@@ -16,16 +16,15 @@ Loan payment is monthly.
 * Use different branches (at least 2) for different functionality and merge to main at the end of development.
 
 ## Example
-No. |  Remaining credit amount |  Principal part |  Interest |  Total payment
---- | --- | --- | --- |---
-1 | 10052.27 | 1947.73 | 127.00 | 2074.73
-2 | 8083.93 | 1968.34 | 106.39 | 2074.73
-3 | 6094.75 | 1989.18 | 85.55 | 2074.73
-4 | 4084.52 | 2010.23 | 64.50 | 2074.73
-5 | 2053.02 | 2031.50 | 43.23 | 2074.73
-6 | 0.00 | 2053.02 | 21.73 | 2074.75
-|  | Total: | 12000.00 EUR | 448.40 EUR | 12448.40 EUR
-
+| No. | Remaining credit amount | Principal part | Interest   | Total payment |
+|-----|-------------------------|----------------|------------|---------------|
+| 1   | 10052.27                | 1947.73        | 127.00     | 2074.73       |
+| 2   | 8083.93                 | 1968.34        | 106.39     | 2074.73       |
+| 3   | 6094.75                 | 1989.18        | 85.55      | 2074.73       |
+| 4   | 4084.52                 | 2010.23        | 64.50      | 2074.73       |
+| 5   | 2053.02                 | 2031.50        | 43.23      | 2074.73       |
+| 6   | 0.00                    | 2053.02        | 21.73      | 2074.75       |
+|     | Total:                  | 12000.00 EUR   | 448.40 EUR | 12448.40 EUR  |
 
 ## Repository
 
@@ -35,11 +34,7 @@ This project consists of a front-end application and a REST API.
 
 To start the project, follow these steps:
 
-1. Run the following command to set up the project:
-   `make up`
-or
-`docker-compose up`
-
+1. Run the following command to set up the project: `make up` or `docker-compose up`
 
 2. Once the project is running, you can access the front-end application at `http://127.0.0.1:8000` and the REST API at `http://127.0.0.1:8080/api/noviti`.
 
@@ -58,10 +53,8 @@ The project has the following dependencies:
 
 Make sure you have these dependencies installed before starting the project.
 
-## Contributing
+## Help
 
-If you would like to contribute to this project, please follow the guidelines in [CONTRIBUTING.md](link-to-contributing-guidelines) and submit a pull request.
-
-## License
-
-This project is licensed under the [MIT License](link-to-license).
+* https://www.ablebits.com/office-addins-blog/excel-pmt-function-formula-examples/
+* https://www.binaryboxtuts.com/php-tutorials/how-to-make-symfony-6-rest-api/
+* [dev@noviti.lt](mailto:dev@noviti.lt)
