@@ -35,8 +35,8 @@ This project consists of a front-end application and a REST API.
 To start the project, follow these steps:
 
 1. Run the following command to set up the project: `make up` or `docker-compose up`
-
-2. Once the project is running, you can access the front-end application at `http://127.0.0.1:8000` and the REST API at `http://127.0.0.1:8080/api/noviti`.
+2. Run `make sh` or `docker compose exec noviti-app bash` to connect to the container and execute `composer install`
+3. Once the project is running, you can access the front-end application at `http://127.0.0.1:8000` and the REST API at `http://127.0.0.1:8080/api/noviti`.
 
 ## Project Structure
 
