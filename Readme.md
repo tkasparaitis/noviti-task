@@ -9,7 +9,7 @@ Term: 6 months
 Schedule repayment type: Annuity
 Loan payment is monthly.
 
-## Additional points
+## Optional
 * Create and use the backend REST API.
 * Save result to file (REST API).
 * Use a database at REST API (add db to docker).
