@@ -1,0 +1,122 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+
+body {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  height: 100vh;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+.container {
+  margin: 3rem auto 0 auto;
+  padding: 0 1rem;
+  height: inherit;
+}
+
+.container > h1 {
+  text-align: center;
+  margin: 0 0 3rem 0;
+}
+
+.table {
+  width: 100%;
+  text-align: left;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+.table-header,
+.table-body,
+.table-body > tr {
+  border-top-color: inherit;
+  border-right-color: inherit;
+  border-bottom-color: inherit;
+  border-left-color: inherit;
+}
+
+.table-header {
+  display: table-header-group;
+  vertical-align: middle;
+}
+
+.table-body {
+  display: table-row-group;
+  vertical-align: middle;
+}
+
+.table-body tr {
+  display: table-row;
+  vertical-align: inherit;
+}
+
+.table-header > tr > th,
+.table-body > tr > td, .form {
+  padding: 1rem;
+  border: 0.1rem solid black;
+}
+
+.table-body__total-row {
+  background-color: rgba(5, 70, 0, 0.2);
+}
+
+.table-body__total-row td:nth-child(n + 3) {
+  text-transform: uppercase;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 3rem 0;
+}
+
+.form div:not(:last-child) {
+  margin: 0 0 1rem 0;
+}
+
+.form div:nth-child(4) {
+  margin: 0 0 3rem 0;
+}
+
+.form .button {
+  background-color: rgba(5, 70, 0, 0.5);
+  color: white;
+  padding: 1rem;
+  font-size: 16px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+}
+
+.form .button:hover {
+  background-color: rgba(5, 70, 0, 0.8);
+  transition: background-color 0.3s ease;
+}
+
+.loan-amount,
+.yearly-interest, .term-month, .repayment {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  background-color: rgba(5, 70, 0, 0.2);
+}
+
+.loan-amount label,
+.loan-amount input,
+.yearly-interest label,
+.yearly-interest input, .term-month label, .term-month input, .repayment label {
+  margin: 0 1rem 0 0;
+}
+
+@media screen and (max-width: 768px) {
+  .table-header > tr > th,
+  .table-body > tr > td, .form {
+    padding: 0.5rem;
+    border: 0.05rem solid black;
+  }
+
+  body, .form, .form .button {
+    font-size: 12px;
+  }
+}
