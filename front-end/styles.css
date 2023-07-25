@@ -1,0 +1,223 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+
+body {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  position: relative;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul {
+  margin: 0;
+}
+
+.container {
+  padding: 3rem 1rem 6rem 1rem;
+}
+
+.title {
+  text-align: center;
+  margin: 0 0 3rem 0;
+}
+
+.form,
+.table,
+.list {
+  border: solid 1px black;
+  padding: 1rem;
+}
+
+.form div:not(:last-child) {
+  margin: 0 0 1rem 0;
+}
+
+.form,
+.list {
+  margin: 0 0 3rem 0;
+}
+
+.loan-amount,
+.yearly-interest,
+.term-month,
+.repayment,
+.list li {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  background-color: rgb(182, 227, 182);
+}
+
+.form > div > label,
+.form > div > input {
+  margin: 0 1rem 0 0;
+}
+
+.button {
+  width: 100%;
+  border: 0;
+  cursor: pointer;
+  background-color: rgb(25, 167, 25);
+  color: white;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 1rem 0;
+}
+
+.button:hover,
+.list li:hover {
+  transform: scale(1.02);
+  background-color: rgb(27, 188, 27);
+  transition: all 0.3s ease-in-out;
+}
+
+.table {
+  width: 100%;
+}
+
+.list li {
+  cursor: pointer;
+}
+
+.list li > h3,
+.list li > p:not(:last-child) {
+  margin: 0 1rem 0 0;
+}
+
+.list li > p:last-child {
+  margin: 0 0 0 auto;
+  color: rgb(25, 167, 25);
+  font-weight: 700;
+}
+
+.list li:not(:last-child) {
+  margin: 0 0 1rem 0;
+}
+
+.list li:hover > p:last-child {
+  color: white;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Table styles */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Header row styles */
+.table thead {
+  background-color: rgb(27, 188, 27);
+}
+
+.table thead td {
+  padding: 1rem;
+  font-weight: bold;
+  border: 1px solid black;
+  text-align: start; /* Align header text to the left */
+}
+
+/* Data rows styles */
+.table tbody tr {
+  background-color: #fff;
+}
+
+.table tbody td {
+  padding: 1rem;
+  border: 1px solid black;
+  text-align: start; /* Align data cell text to the left */
+}
+
+/* Footer row styles */
+.table tfoot td {
+  padding: 1rem;
+  font-weight: bold;
+  border: 1px solid black;
+  text-align: start; /* Align footer cell text to the left */
+}
+
+/* Add some additional styles for the footer row */
+.table tfoot tr:last-child {
+  background-color: rgb(182, 227, 182);
+}
+
+
+
+@media screen and (min-width: 320px) {
+  body {
+    font-size: 10px;
+  }
+
+  .container {
+    padding: 3rem 0.5rem 6rem 0.5rem;
+  }
+
+  .form,
+  .table,
+  .list {
+    padding: 0.5rem;
+  }
+
+  .form,
+  .list {
+    margin: 0 0 1.5rem 0;
+  }
+
+  .table thead td {
+    padding: 0.5rem;
+  }
+  
+  .table tbody td {
+    padding: 0.5rem;
+  }
+  
+  .table tfoot td {
+    padding: 0.5rem;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  body {
+    font-size: 12px;
+  }
+
+  .form,
+  .table,
+  .list {
+    padding: 1rem;
+  }
+
+  .form,
+  .list {
+    margin: 0 0 3rem 0;
+  }
+
+  .table thead td {
+    padding: 1rem;
+  }
+  
+  .table tbody td {
+    padding: 1rem;
+  }
+  
+  .table tfoot td {
+    padding: 1rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+
+  .container {
+    padding: 3rem 1rem 6rem 1rem;
+  }
+}
