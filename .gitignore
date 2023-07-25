@@ -4,5 +4,6 @@
 /rest-api/var/
 /rest-api/vendor/
 /docker/logs
+/postgres-data/
 
 .DS_Store
