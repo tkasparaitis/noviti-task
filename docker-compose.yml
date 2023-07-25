@@ -17,13 +17,14 @@ services:
         volumes:
             - ./front-end:/usr/share/nginx/html
 
-
-
-networks:
-    default:
-        name: noviti-task
-        driver: bridge
-        ipam:
-            driver: default
-            config:
-                - subnet: 172.33.88.0/24
+    noviti-db:
+        container_name: noviti-db
+        image: postgres:14.3
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: password
+            POSTGRES_DB: noviti-db
+        ports:
+            - 15432:5432
+        volumes:
+            - ./postgres-data:/var/lib/postgresql/data

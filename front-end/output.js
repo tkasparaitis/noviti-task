@@ -1,100 +1,114 @@
-const tableBody = document.querySelector(".table-body");
-const tableBodyTotalRow = tableBody.querySelector(".table-body__total-row");
-const url = "http://127.0.0.1:8080/api";
-window.url = url;
+const table = container.querySelector(".table");
+const list = container.querySelectorAll(".list");
 
-async function fetchData(currentApiPathInString) {
+window.onload = () => {
+  outputDataDisplay();
+};
+
+
+async function getData() {
   try {
-    const response = await fetch(`${url}/${currentApiPathInString}`);
+    const response = await fetch(`${url}/noviti`);
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
-    const data = await response.json();
-    return data;
+    const { repayment_details } = await response.json();
+    return repayment_details;
   } catch (error) {
     console.error(error);
   }
 }
 
-const options = [
-  {
-    month: 1,
-    amount: 10052.27,
-    part: 1947.73,
-    interest: 127.0,
-    total: 2074.73,
-  },
-  {
-    month: 2,
-    amount: 10052.27,
-    part: 1947.73,
-    interest: 127.0,
-    total: 2074.73,
-  },
-  {
-    month: 3,
-    amount: 10052.27,
-    part: 1947.73,
-    interest: 127.0,
-    total: 2074.73,
-  },
-  {
-    month: 4,
-    amount: 10052.27,
-    part: 1947.73,
-    interest: 127.0,
-    total: 2074.73,
-  },
-  {
-    month: 5,
-    amount: 10052.27,
-    part: 1947.73,
-    interest: 127.0,
-    total: 2074.73,
-  },
-  {
-    month: 6,
-    amount: 10052.27,
-    part: 1947.73,
-    interest: 127.0,
-    total: 2074.73,
-  },
-];
 
-async function tableDataDisplay() {
-  const data = await fetchData('noviti');
-  let totaly = { part: 0, interest: 0, total: 0 };
+function renderHtmlTemplate(detailsArray) {
+  let totaly = { principal: 0, interest: 0, monthly: 0 };
+  const dynamicRows = detailsArray
+      .map(({ month, remaining, principal, interest, monthly }) => {
+        totaly.monthly += monthly;
+        totaly.interest += interest;
+        totaly.principal += principal;
+        return `
+        <tr>
+          <td>${month}</td>
+          <td>${remaining}</td>
+          <td>${principal}</td>
+          <td>${interest}</td>
+          <td>${monthly}</td>
+        </tr>`;
+      })
+      .join("");
 
-  options?.forEach(({ month, amount, part, interest, total }) => {
-    tableBodyTotalRow.insertAdjacentHTML(
-      "beforebegin",
-      `<tr><td>${month}</td>
-    <td>${amount}</td>
-    <td>${part}</td>
-    <td>${interest}</td>
-    <td>${total}</td></tr>`
-    );
+    const tfootTemplate = `
+      <tfoot>
+        <tr>
+          <td></td>
+          <td>Total:</td>
+          <td>${totaly.principal.toFixed(2)} EUR</td>
+          <td>${totaly.interest.toFixed(2)} EUR</td>
+          <td>${totaly.monthly.toFixed(2)} EUR</td>
+        </tr>
+      </tfoot>`;
+    table.innerHTML = `
+      <thead>
+        <tr>
+          <td>No.</td>
+          <td>Remaining credit amount</td>
+          <td>Principal part</td>
+          <td>Interest</td>
+          <td>Total payment</td>
+        </tr>
+      </thead>
+      <tbody>${dynamicRows}</tbody>
+      ${tfootTemplate}`;
+}
 
-    totaly.part += part;
-    totaly.interest += interest;
-    totaly.total += total;
+
+async function outputDataDisplay() {
+  const options = await getData();
+  const lastArray = options[options.length - 1];
+
+  if (lastArray.length === 0) {
+    table.innerHTML = `<p>The table is empty... Calculate the new value!</p>`;
+  } else {
+    renderHtmlTemplate(lastArray.details);
+    displayAllCasesTotalPayment(options);
+  }
+}
+
+
+function displayAllCasesTotalPayment(dataCases) {
+  const dynamicListValue = dataCases
+    .map(({ id, amount, interest, term, details }) => {
+      const totalPayment = calculateTotalMonthly(details);
+
+      return `
+        <li key="${id}" title="Click to open case: ${id}">
+          <h3>Case: ${id}</h3>
+          <p>Amount: ${amount}</p>
+          <p>Interest: ${interest}%</p>
+          <p>Term: ${term} months</p>
+          <p>Total payment: ${totalPayment} €</p>
+        </li>
+      `;
+    })
+    .join("");
+
+  list.forEach((element) => {
+    element.innerHTML = dynamicListValue;
+    element.addEventListener("click", (e) => chooseDisplayCase(e, dataCases));
   });
-
-  tableDataTotalDisplay(totaly);
 }
 
-
-
-function tableDataTotalDisplay(data) {
-  const { part, interest, total } = data;
-    const totalRow = tableBodyTotalRow.children;
-   
-    // "Principal part".
-    totalRow[2].textContent = `${part} eur`;
-    // "Interest".
-    totalRow[3].textContent = `${interest} eur`;
-    // "Total payment".
-    totalRow[4].textContent = `${total} eur`;
+function calculateTotalMonthly(detailsArray) {
+  let totalMonthly = 0;
+  for (const { monthly } of detailsArray) {
+    totalMonthly += monthly;
+  }
+  return totalMonthly.toFixed(2);
 }
 
-tableDataDisplay();
+function chooseDisplayCase(e, data) {
+  const caseId = Number(e.target.getAttribute("key"));
+  const currentCase = data.find(({ id }) => id === caseId);
+  if(currentCase) renderHtmlTemplate(currentCase.details);
+}

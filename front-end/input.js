@@ -1,46 +1,71 @@
-const form = document.querySelector(".form");
+const url = "http://127.0.0.1:8080/api";
+const container = document.querySelector(".container");
+const form = container.querySelector(".form");
 const button = form.querySelector(".button");
-window.form = form;
+const amountInput = form.querySelector('[name="amount"]');
+const interestInput = form.querySelector('[name="interest"]');
+const monthInput = form.querySelector('[name="month"]');
+const repaymentSelect = form.querySelector('[name="repayment"]');
+const amountInputDisplay = form.querySelector(".loan-amount").children[2];
+const amountInputInitalValue = amountInput.value;
+const setContent = (content) => (amountInputDisplay.textContent = content);
 
-async function postData(options) {
-  button.textContent = "Submiting...";
+async function postData(dataToSend) {
+  const requestOptions = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(dataToSend),
+  };
+
   try {
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(options),
-    });
-
+    button.textContent = "Submitting...";
+    const response = await fetch(`${url}/post`, requestOptions);
     if (!response.ok) {
-      button.textContent = "Error, try again...";
-      throw new Error("Request failed");
+      button.textContent = "Ups! Error...";
+      throw new Error("Network response was not ok");
     }
-
-    const responseData = await response.json();
-    console.log("Response:", responseData);
     button.textContent = "Successfully!";
+    const data = await response.json();
+    outputDataDisplay();
   } catch (error) {
-    console.error("Error:", error, options);
-    button.textContent = "Error, try again...";
+    button.textContent = "Ups! Error...";
+    console.error(error);
   }
 }
 
-function formDatainput() {
-  const onFormSubmit = (e) => {
+function inputformSubmit() {
+  amountInputDisplay.textContent = amountInputInitalValue;
+  setContent(amountInputInitalValue);
+
+  const handleSubmit = (e) => {
     e.preventDefault();
     postData({
-      month: form.elements[2].value,
-      amount: form.elements[0].value,
-      interest: form.elements[1].value,
-      type: form.elements[3].value,
+      month: monthInput.value,
+      amount: amountInput.value,
+      interest: interestInput.value,
+      repayment: repaymentSelect.value,
     });
-
     form.reset();
+    setContent(amountInputInitalValue);
+    setButtonTextUpdate();
   };
 
-  form.addEventListener("submit", onFormSubmit);
+  const handleChange = (e) => {
+    setContent(e.target.value);
+  };
+
+  form.addEventListener("submit", handleSubmit);
+  amountInput.addEventListener("input", handleChange);
 }
 
-formDatainput();
+function setButtonTextUpdate() {
+  let timer;
+  clearTimeout(timer);
+  timer = setTimeout(() => {
+    button.textContent = "Calculate";
+  }, 3000);
+}
+
+inputformSubmit();
