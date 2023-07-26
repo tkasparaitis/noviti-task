@@ -20,12 +20,12 @@ const removeInputGroupClass = (classname) => {
   inputGroup.classList.remove(classname)
 }
 
-export const showInputGroupError = ({ message }) => {
+export const showFormError = ({ message }) => {
   setAmountErrorText(message)
   addInputGroupClass(ERROR_CLASS)
 }
 
-export const hideInputGroupError = () => {
+export const hideFormError = () => {
   setAmountErrorText('')
   removeInputGroupClass(ERROR_CLASS)
 }

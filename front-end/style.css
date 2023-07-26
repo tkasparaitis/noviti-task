@@ -1,4 +1,5 @@
 @import './form.css';
+@import './table.css';
 
 .container {
   display: flex;
