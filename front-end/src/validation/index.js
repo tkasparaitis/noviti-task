@@ -6,13 +6,19 @@ const isAmountFieldValid = (e) => {
   e.preventDefault()
   const amountInputValue = e.target.getElementsByTagName('input')[0].value
 
-  return amountInputValue >= LOWEST_VALUE && amountInputValue <= HIGHEST_VALUE
+  return {
+    isValid:
+      amountInputValue >= LOWEST_VALUE && amountInputValue <= HIGHEST_VALUE,
+    amount: amountInputValue,
+  }
 }
 
 export default ({ form, onValid, onInvalid }) => {
   form.addEventListener('submit', (e) => {
-    const isFormValid = isAmountFieldValid(e)
+    const { isValid, amount } = isAmountFieldValid(e)
 
-    isFormValid ? onValid() : onInvalid({ message: RANGE_VALIDATION_MESSAGE })
+    isValid
+      ? onValid({ amount })
+      : onInvalid({ message: RANGE_VALIDATION_MESSAGE })
   })
 }

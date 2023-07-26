@@ -5,6 +5,7 @@ import {
   showTable,
   hideTable,
 } from './src/scheduleTable/index.js'
+import { getRepaymentSchedule } from './src/api.js'
 
 const data = [
   { remaining: 10052.27, principal: 1947.73, interest: 127.0, total: 2074.73 },
@@ -21,10 +22,11 @@ const TABLE_ID = 'schedule-table'
 const form = document.getElementById(FORM_ID)
 const table = document.getElementById(TABLE_ID)
 
-const onValid = () => {
+const onValid = async ({ amount }) => {
+  const { schedule } = await getRepaymentSchedule(amount)
   hideFormError()
   showTable(table)
-  rerenderTable(table, data)
+  rerenderTable(table, schedule)
 }
 
 const onInvalid = (e) => {
