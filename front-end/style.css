@@ -1,0 +1,9 @@
+@import './form.css';
+
+.container {
+  display: flex;
+}
+
+.info {
+  padding-right: 100px;
+}
