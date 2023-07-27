@@ -1,0 +1,11 @@
+@import './src/repaymentForm/style.css';
+@import './src/scheduleTable/style.css';
+@import './src/validation/style.css';
+
+.container {
+  display: flex;
+}
+
+.info {
+  padding-right: 100px;
+}
