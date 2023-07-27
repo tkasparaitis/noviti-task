@@ -1,20 +1,48 @@
 <!DOCTYPE html>
+
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Noviti task</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
 
-<head>
-    <meta name="description" content="Webpage description goes here" />
-    <meta charset="utf-8">
-    <title>Change_me</title>
-</head>
+  <body>
+    <div class="container">
+      <div class="info">
+        <div>Yearly interest: 12.7%</div>
+        <div>Term: 6 months</div>
+        <div>Schedule repayment type: Annuity</div>
+        <div>Loan payment is monthly.</div>
+      </div>
 
-<body>
+      <div class="schedule">
+        <form id="amount-form">
+          <div class="input-group">
+            <label for="amount-input">Enter amount:</label>
+            <input id="amount-input" name="amount-input" type="number" />
+            <div id="amount-error" class="error-message"></div>
+          </div>
+          <div>
+            <button>Submit</button>
+          </div>
+        </form>
+        <div id="loader">Loading...</div>
+        <table id="schedule-table">
+          <thead>
+            <tr>
+              <th>No.</th>
+              <th>Remaining credit amount</th>
+              <th>Principal part</th>
+              <th>Interest</th>
+              <th>Total payment</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
 
-<div class="container">
-
-</div>
-
-<script>
-</script>
-
-</body>
+    <script type="module" src="./index.js"></script>
+  </body>
 </html>
