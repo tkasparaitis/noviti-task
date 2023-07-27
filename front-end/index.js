@@ -1,6 +1,10 @@
-import { showFormError, hideFormError } from './src/amountForm.js'
-import bindFormValidation from './src/validation.js'
-import { rerenderTable, showTable, hideTable } from './src/scheduleTable.js'
+import { showFormError, hideFormError } from './src/repaymentForm/index.js'
+import bindFormValidation from './src/validation/index.js'
+import {
+  rerenderTable,
+  showTable,
+  hideTable,
+} from './src/scheduleTable/index.js'
 
 const data = [
   { remaining: 10052.27, principal: 1947.73, interest: 127.0, total: 2074.73 },
